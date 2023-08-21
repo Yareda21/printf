@@ -39,16 +39,16 @@ int width, int precision, int size)
 int print_string(va_list types, char buffer[],
 int flags, int width, int precision, int size)
 {
+	int length = 0;
+	int i;
+	char *str = va_arg(types, char *);
+
+	/* declaring unused variables in the function */
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-
-	int length = 0;
-	int i;
-
-	char *str = va_arg(types, char *);
 	/*/ checking the string is null */
 	if (str == NULL)
 	{/*/ giving null string to str */
@@ -167,6 +167,11 @@ int flags, int width, int precision, int size)
 int print_binary(va_list types, char buffer[],
 int flags, int width, int precision, int size)
 {
+	unsigned int n, m, i, sum;
+	unsigned int a[32];
+	int count;
+
+	n = va_arg(types, unsigned int);
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -174,11 +179,6 @@ int flags, int width, int precision, int size)
 	UNUSED(precision);
 	UNUSED(size);
 
-	unsigned int n, m, i, sum;
-	unsigned int a[32];
-	int count;
-
-	n = va_arg(types, unsigned int);
 	m = 2147483648; /* 2 the power of 31 */
 	a[0] = n / m;
 	for (i = 1; i < 32; i++)
